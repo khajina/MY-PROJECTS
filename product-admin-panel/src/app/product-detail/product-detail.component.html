@@ -1,0 +1,29 @@
+<app-sidenav></app-sidenav>
+
+
+<div class="container">
+    <h2><i class="fa fa-arrow-circle-o-left" aria-hidden="true" routerLink="/"></i></h2><br><br><br>
+    <h1>Product Details</h1>
+    <div class="row">
+      <div class="col-md-2 image-box"> 
+        <img  src="{{productDetail[0].url}}" class="images">
+    </div>
+      <div class="col-md-10" style="padding: 12px;">
+        <h2 class="item">{{productDetail[0].title}}</h2>
+        <h3 class="price">Rs.{{productDetail[0].price}}</h3>
+        <p class="description">{{productDetail[0].description}}</p>
+        <p for="item-1-quantity" class="stock">Stock: {{productDetail[0].status}} </p><br>
+        <ul class="list">
+            <li>
+                <i class="fa fa-heart-o" aria-hidden="true" (click)="liked()" *ngIf="productDetail[0].like==0"></i>
+                <i class="fa fa-heart" aria-hidden="true" (click)="Disliked()" *ngIf="productDetail[0].like!=0" [ngClass]="productDetail[0].like!=0 ? 'fill-red' : ''"></i>
+            </li>
+        </ul>
+        <ngb-rating [max]="5" [(rate)]="productDetail[0].rating" [readonly]="true"></ngb-rating>
+      </div>
+      <div class="row">
+        <button type="button" name="item-1-button" id="item-1-button" class="btn btn-primary" (click)="redirectTo('add')"><i class="fa fa-plus icon"></i> Add Product</button><br><br>
+        <button type="button" name="item-1-button" id="item-1-button" class="btn btn-primary" (click)="redirectTo('edit')"><i class="fa fa-edit icon"></i> Edit Product</button><br><br>
+    </div>
+    </div>
+  </div>

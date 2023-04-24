@@ -1,0 +1,43 @@
+
+<div class="container">
+    <h2>{{addFlag ? 'Add' : 'Edit'}} Product</h2>
+    <form [formGroup]="productForm">
+        <div class="row">
+            <label>Product Title</label>
+            <input type="text" class="form-control" formControlName="title">
+            <div class="errorCls" *ngIf="f.title.errors?.maxlength">Title must be maximum length 50</div>
+        </div>
+        <div class="row">
+            <label>Product Description</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+            <div class="errorCls" *ngIf="f.description.errors?.minlength">Description must be minimum length 150</div>
+        </div>
+        <div class="row">
+            <label>Product Price</label>
+            <input type="text" class="form-control" formControlName="price">
+        </div>
+        <div class="row">
+            <label>Product Rate</label>
+            <input type="number" class="form-control" formControlName="rating" min="1" max="5">
+        </div>
+        <div class="row">
+            <label>Product URL</label>
+            <input type="text" class="form-control" formControlName="url">
+            <div class="errorCls" *ngIf="f.url.errors?.pattern">Please provide valid url</div>
+        </div>
+        <div class="row">
+            <label>Product Status</label>
+            <!-- <select class="form-control" formControlName="status">
+                <option>--select--</option>
+                <option value="In-stock">In-stock</option>
+                <option value="Out-stock">Out-stock</option>
+            </select> -->
+            <input type="radio" id="In-stock" name="status" formControlName="status" value="In-stock" checked>In-stock
+            <input type="radio" id="Out-stock" name="status" formControlName="status" value="Out-stock">Out-stock
+        </div>
+        <br><br>
+        <div class="row">
+            <button type="buttom" class="btn btn-primary" (click)="submit()" [disabled]="productForm.invalid">{{addFlag ? 'Save' : 'Update'}}</button>
+        </div>
+    </form>
+</div>

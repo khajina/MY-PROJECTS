@@ -1,0 +1,49 @@
+
+
+<app-sidenav></app-sidenav>
+
+<div class="container">
+    <div class="topnav">
+        <a></a>
+    </div>
+
+  <input type="text" class="form-control search" placeholder="Search By Product Name..." (change)="searchText($event)">
+  <div class="col-md-12">
+        <div class="col-md-1 checklist">
+            <ngx-slider [(value)]="value" [options]="options" (valueChange)="onValueChange($event)"></ngx-slider> 
+              <label for="vehicle1"> Price</label><br>
+              <ngx-slider [(value)]="rateValue" [options]="rateoptions" (valueChange)="onRateValueChange($event)"></ngx-slider> 
+            <label for="vehicle2"> Rating</label><br>
+            <br><br>
+            <input type="radio" id="radio1" name="radio1" value="In-stock" (change)="stockChange($event)">
+            <label for="vehicle1"> Stock-In</label><br>
+            <input type="radio" id="radio1" name="radio1" value="Out-stock" (change)="stockChange($event)">
+            <label for="vehicle1"> Stock-Out</label><br>
+            <br><br>
+            <button type="button" class="form-control" (click)="clearAll()">Clear Filter</button>
+        </div>
+        <div class="col-md-11">
+            <div class="listing-section">
+                <div class="product" *ngFor="let i of productList">
+                  <div class="image-box" (click)="productDetail(i.id)">
+                    <img [src]="i.url" class="images">
+                  </div>
+                  <div class="text-box">
+                    <h2 class="item">{{i.title}}</h2>
+                    <h3 class="price">Rs.{{i.price}}</h3>
+                    <p class="description">{{i.description | slice:0:40}}...</p>
+                    <label for="item-1-quantity">Stock: {{i.status}} </label>
+                    <button type="button" name="item-1-button" id="item-1-button" (click)="removeProduct(i.id)">Remove</button>
+
+                    <ngb-rating [max]="5" [(rate)]="i.rating" [readonly]="false"></ngb-rating>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="productList.length==0">
+                <h2 style="margin-left: 500px;margin-top: 100px;">No Products...</h2>
+              </div>
+        </div>
+  </div>
+   
+</div>
